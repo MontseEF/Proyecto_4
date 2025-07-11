@@ -1,21 +1,20 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const bookingRoutes = require('./routes/booking-routes');
 
-// Cargar configuración desde .env
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware para leer JSON
 app.use(express.json());
 
-// Ruta de prueba
-app.get('/ping', (req, res) => {
-  res.send('pong');
+app.use('/api/reservas', bookingRoutes);
+
+app.get('/', (req, res) => {
+  res.send('API de Reservas funcionando correctamente');
 });
 
-// Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
