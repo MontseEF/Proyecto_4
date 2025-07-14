@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": 1752454505387,
+    "hotel": "Hotel Olympia",
+    "tipo_habitacion": "suite",
+    "fecha_entrada": "20-07-2025",
+    "fecha_salida": "22-07-2025",
+    "num_huespedes": 2,
+    "estado": "confirmada"
+  },
+  {
+    "id": 1752457205778
+  },
+  {
+    "id": 1752458851577,
+    "hotel": "Hotel Olympia",
+    "tipo_habitacion": "Simple",
+    "fecha_entrada": "25-07-2025",
+    "fecha_salida": "26-07-2025",
+    "num_huespedes": 1,
+    "estado": "confirmada"
+  }
+]

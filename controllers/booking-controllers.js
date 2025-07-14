@@ -26,5 +26,11 @@ function createBooking(req, res) {
 }
 
 module.exports = {
-  createBooking
+  createBooking,
+  getAllBookings
 };
+function getAllBookings(req, res) {
+  const bookings = readBookings(); 
+  res.status(200).json(bookings);
+}
+
