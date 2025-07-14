@@ -17,6 +17,7 @@ function createBooking(req, res) {
     id: Date.now(),
     ...req.body
   };
+  console.log('Nueva reserva recibida:', newBooking); 
 
   bookings.push(newBooking);
   saveBooking(bookings);
