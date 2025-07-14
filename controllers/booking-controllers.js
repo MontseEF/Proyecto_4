@@ -34,3 +34,15 @@ function getAllBookings(req, res) {
   res.status(200).json(bookings);
 }
 
+function getBookingById(req, res) {
+  const bookings = readBookings();
+  const id = Number(req.params.id);
+
+  const booking = bookings.find(b => b.id === id);
+
+  if (!booking) {
+    return res.status(404).json({ message: "Reserva no encontrada" });
+  }
+
+  res.status(200).json(booking);
+}

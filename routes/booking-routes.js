@@ -4,6 +4,7 @@ const { createBooking, getAllBookings } = require('../controllers/booking-contro
 
 router.post('/', createBooking);
 router.get('/', getAllBookings);
+router.get('/:id', getBookingById);
 
 
 module.exports = router;
