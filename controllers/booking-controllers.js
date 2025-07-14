@@ -27,7 +27,8 @@ function createBooking(req, res) {
 
 module.exports = {
   createBooking,
-  getAllBookings
+  getAllBookings, 
+  getBookingById
 };
 function getAllBookings(req, res) {
   const bookings = readBookings(); 
