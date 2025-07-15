@@ -9,7 +9,8 @@ function readBookings() {
 
 function saveBooking(bookings) {
   fs.writeFileSync(bookingPath, JSON.stringify(bookings, null, 2));
-}
+} 
+console.log('Archivo de reservas cargado correctamente');
 
 function createBooking(req, res) {
   const bookings = readBookings();
@@ -25,16 +26,11 @@ function createBooking(req, res) {
   res.status(201).json(newBooking);
 }
 
-module.exports = {
-  createBooking,
-  getAllBookings, 
-  getBookingById
-};
 function getAllBookings(req, res) {
   const bookings = readBookings(); 
   res.status(200).json(bookings);
 }
-
+console.log('Todas las reservas obtenidas correctamente');
 function getBookingById(req, res) {
   const bookings = readBookings();
   const id = Number(req.params.id);
@@ -47,3 +43,33 @@ function getBookingById(req, res) {
 
   res.status(200).json(booking);
 }
+console.log('Reserva obtenida correctamente con ID:', req.params.id);
+
+function updateBooking(req, res) {
+  const bookings = readBookings();
+  const id = Number(req.params.id);
+
+  const index = bookings.findIndex(b => b.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: 'Reserva no encontrada' });
+  }
+  console.log('Actualizando reserva con ID:', id);
+
+  const updatedBooking = {
+    ...bookings[index],    
+    ...req.body            
+  };
+
+  bookings[index] = updatedBooking;
+  saveBooking(bookings);
+
+  res.status(200).json(updateBooking);
+}
+
+module.exports = {
+  createBooking,
+  getAllBookings, 
+  getBookingById, 
+  updateBooking
+};
