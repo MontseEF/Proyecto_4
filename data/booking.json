@@ -11,7 +11,7 @@
   {
     "id": 1752458851577,
     "hotel": "Hotel Olympia",
-    "tipo_habitacion": "payaso",
+    "tipo_habitacion": "simple",
     "fecha_entrada": "28-08-2025",
     "fecha_salida": "30-08-2025",
     "num_huespedes": 10,

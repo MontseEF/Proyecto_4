@@ -67,9 +67,44 @@ function updateBooking(req, res) {
   res.status(200).json(updateBooking);
 }
 
+function findBooking(req, res) {
+  const bookings = readBookings();
+  const query = req.query;  
+  const results = bookings.filter(booking => {
+    return Object.entries(query).every(([key, value]) => {
+      return String(booking[key]).toLowerCase() === String(value).toLowerCase();
+    });
+  });
+
+  if (results.length === 0) {
+    return res.status(404).json({ message: 'No se encontraron reservas con ese criterio' });
+  }
+
+  res.status(200).json(results);
+}
+
+function deleteBooking(req, res) {
+  const bookings = readBookings();
+  const id = Number(req.params.id);
+
+  const index = bookings.findIndex(b => b.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: 'Reserva no encontrada' });
+  }
+
+  bookings.splice(index, 1); // elimina esa reserva
+  saveBooking(bookings);
+
+  res.status(200).json({ message: 'Reserva eliminada correctamente' });
+}
+
+ 
+
 module.exports = {
   createBooking,
   getAllBookings, 
   getBookingById, 
-  updateBooking
+  updateBooking, 
+  deleteBooking,
 };
