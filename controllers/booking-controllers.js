@@ -40,10 +40,10 @@ function getBookingById(req, res) {
   if (!booking) {
     return res.status(404).json({ message: "Reserva no encontrada" });
   }
+  console.log('Reserva obtenida correctamente con ID:', req.params.id);
 
   res.status(200).json(booking);
 }
-console.log('Reserva obtenida correctamente con ID:', req.params.id);
 
 function updateBooking(req, res) {
   const bookings = readBookings();
@@ -93,7 +93,7 @@ function deleteBooking(req, res) {
     return res.status(404).json({ message: 'Reserva no encontrada' });
   }
 
-  bookings.splice(index, 1); // elimina esa reserva
+  bookings.splice(index, 1);
   saveBooking(bookings);
 
   res.status(200).json({ message: 'Reserva eliminada correctamente' });
